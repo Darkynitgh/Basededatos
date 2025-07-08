@@ -1,0 +1,9 @@
+<?php
+
+const ALUMNO = "ALUMNO";
+
+const ALU_ID = "ALU_ID";
+const ALU_NOMBRE = "ALU_NOMBRE";
+const ALU_CURSO = "ALU_CURSO";
+const ALU_CALIFICACION = "ALU_CALIFICACION";
+const ALU_MATRICULA = "ALU_MATRICULA";

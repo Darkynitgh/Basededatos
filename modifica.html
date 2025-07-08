@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" class="light dark">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Modificar - Base de datos</title>
+
+  <script src="js/registraServiceWorker.js"></script>
+
+  <meta name="viewport" content="width=device-width">
+  <meta name="theme-color" content="#fffbfe">
+  <link rel="icon" sizes="48x48" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <script src="ungap/custom-elements.js"></script>
+
+  <script type="module" src="js/configura.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/transicion_pestanas.css">
+
+  <link rel="stylesheet" href="css/dark-hc.css">
+  <link rel="stylesheet" href="css/dark-mc.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/light-hc.css">
+  <link rel="stylesheet" href="css/light-mc.css">
+  <link rel="stylesheet" href="css/light.css">
+
+
+  <script type="module" src="lib/js/consumeJson.js"></script>
+  <script type="module" src="lib/js/submitForm.js"></script>
+  <script type="module" src="lib/js/muestraObjeto.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+
+  <script>
+    // Obtiene los parámetros de la página.
+    const params = new URL(location.href).searchParams
+  </script>
+
+</head>
+
+<body onload="if (params.size > 0) {
+   consumeJson('srv/Alumno.php?' + params)
+    .then(respuesta => muestraObjeto(forma, respuesta.body))
+    .catch(muestraError)
+  }">
+
+  <form id="forma" onsubmit="submitForm('srv/Alumno-modifica.php', event)
+    .then(respuesta => location.href = 'index.html')
+    .catch(muestraError)">
+
+    <md-top-app-bar>
+        <h1>Modificar Alumno</h1>
+    </md-top-app-bar>
+
+    <main>
+      <p><button class="md-filled-button"><a href="index.html">Cancelar</a></button></p>
+
+      <input name="id" type="hidden">
+
+      <p><p>
+  <label class="md-filled-text-field">
+    <input required placeholder="Ej. Juan Pérez" name="nombre">
+    <span>Nombre del Alumno *</span>
+    <small>Obligatorio</small>
+  </label>
+
+  <label class="md-filled-text-field">
+    <input required placeholder="Ej. Matemáticas, Historia..." name="curso">
+    <span>Curso o Materia *</span>
+    <small>Obligatorio</small>
+  </label>
+
+  <label class="md-filled-text-field">
+    <input required type="number" min="0" max="10" step="0.1" placeholder="Ej. 8.5" name="calificacion">
+    <span>Calificación del Alumno *</span>
+    <small>0 a 10</small>
+  </label>
+
+  <label class="md-filled-text-field">
+    <input required placeholder="Ej. 2023012345" name="matricula">
+    <span>Matrícula *</span>
+    <small>Debe ser única</small>
+  </label>
+</p>
+
+      <p>
+
+        <button class="md-filled-button" type="submit">Guardar</button>
+
+        <button class="md-filled-button" type="button" onclick="
+     if (params.size > 0 && confirm('Confirma la eliminación')) {
+      consumeJson('srv/Alumno-elimina.php?' + params)
+       .then(() => location.href = 'index.html')
+       .catch(muestraError)
+     }">
+          Eliminar
+        </button>
+
+      </p>
+
+  </form>
+
+  </main>
+  <nav-drw ></nav-drw>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" class="light dark">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Agregar - base de datos</title>
+
+  <script src="js/registraServiceWorker.js"></script>
+
+  <meta name="viewport" content="width=device-width">
+  <meta name="theme-color" content="#fffbfe">
+  <link rel="icon" sizes="48x48" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <script src="ungap/custom-elements.js"></script>
+
+  <script type="module" src="js/configura.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/transicion_pestanas.css">
+
+  <link rel="stylesheet" href="css/dark-hc.css">
+  <link rel="stylesheet" href="css/dark-mc.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/light-hc.css">
+  <link rel="stylesheet" href="css/light-mc.css">
+  <link rel="stylesheet" href="css/light.css">
+
+  <script type="module" src="lib/js/submitForm.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+
+</head>
+
+<body>
+
+  <form onsubmit="submitForm('srv/Alumno-agrega.php', event)
+    .then(modelo => location.href = 'index.html')
+    .catch(muestraError)">
+
+    <md-top-app-bar>
+        <h1>Agregar Alumno</h1>
+    </md-top-app-bar>
+
+
+    <main>
+  <p>
+    <label class="md-filled-text-field">
+      <input required placeholder="Nombre del alumno*" name="nombre">
+      <span>Nombre del Alumno *</span>
+      <small>Obligatorio</small>
+    </label>
+
+    <label class="md-filled-text-field">
+      <input required placeholder="Curso o materia*" name="curso">
+      <span>Curso o Materia *</span>
+      <small>Obligatorio</small>
+    </label>
+
+    <label class="md-filled-text-field">
+      <input required type="number" min="0" max="10" step="0.1" placeholder="Calificación*" name="calificacion">
+      <span>Calificación del Alumno *</span>
+      <small>0 a 10</small>
+    </label>
+
+    <label class="md-filled-text-field">
+      <input required placeholder="Matrícula del alumno*" name="matricula">
+      <span>Matrícula *</span>
+      <small>Debe ser única</small>
+    </label>
+  </p>
+
+  <p>
+    <button class="md-filled-button" type="submit">Agregar</button>
+    <button class="md-filled-button"><a href="index.html">Cancelar</a></button>
+  </p>
+</main>
+
+
+  </form>
+
+  <nav-drw ></nav-drw>
+
+</body>
+
+</html>
