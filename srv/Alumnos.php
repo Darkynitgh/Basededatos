@@ -20,11 +20,10 @@ ejecutaServicio(function () {
     $calificacion = htmlentities($modelo[ALU_CALIFICACION]);
 
     $render .=
-      "<li>
-        <p>
-          <a href='modifica.html?id=$id'>$nombre</a> - $curso - $matricula - $calificacion
-        </p>
-      </li>";
+      "<li class='md-two-line'>
+     <span class='headline'><a href='modifica.html?id=$id'>$nombre</a></span>
+     <span class='supporting'>Curso: $curso - Matricula: $matricula- Calificacion: $calificacion</span>
+   </li>";
   }
 
   devuelveJson(["lista" => ["innerHTML" => $render]]);
